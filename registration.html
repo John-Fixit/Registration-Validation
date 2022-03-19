@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table border="1" align="center">
+        <tr>
+            <td colspan="2" align="center">Job Application list</td>
+        </tr>
+        <tr><td>First Name</td><td colspan="2"><input type="text" name="" id="fN"></td></tr>
+        <tr><td>Last Name</td><td colspan="2"><input type="text" name="" id="lN"></td></tr>
+        <tr><td>E-mail</td><td colspan="2"><input type="email" name="" id="email"></td></tr>
+        <tr><td>Contact</td><td colspan="2"><input type="number" name="" id="contact"></td></tr>
+        <tr><td align="center"><button onclick="submit()">Submit</button></td><td align="center"><button onclick="disp()">Show Applicant list</button></td></tr>
+        <button onclick="pre()">prev</button>
+        <button onclick="nex()">next</button>
+    </table>
+    <div id="result"></div>
+    <script>
+        ind = 0
+        allUsers=[];
+        function submit(){
+            if(localStorage !=null){
+                allUsers=JSON.parse(localStorage.getItem("pp"));
+            }   
+            people = ({"firstName": fN.value, "lastName":lN.value, "eMail":email.value, "Contact":contact.value});
+            allUsers.push(people);
+            spp=JSON.stringify(allUsers);
+            localStorage.setItem("pp",spp);
+            alert("Registration successful")
+            
+        }
+        disp=()=>{
+                for( let i = 0; i <= allUsers.length; i++){
+                   result.innerHTML += allUsers[i].firstName + " " + allUsers[i].lastName
+            }
+        }
+        function pre(){
+            --ind;
+            console.log(ind);
+            result.innerHTML = allUsers[ind] + " " + allUsers[ind]
+        }
+        function nex(){
+            ind++;
+            console.log(ind);
+            result.innerHTML += allUsers[ind] + " " + allUsers[ind]
+        }
+    </script>
+</body>
+</html>
