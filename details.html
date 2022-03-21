@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Applicants list</title>
+</head>
+<body>
+    <table border="1" align="center">
+    <tr><td colspan="2" align="center"><button onclick="disp()">Display All Applicants</button></td></tr>
+    <tr><td><button onclick="pre()">Display Previous Applicants</button></td><td colspan="2"><button onclick="nex()">Display Next Applicants</button></td></tr>
+    </table>
+    <div id="result"></div>
+    <script>
+        ind=-1
+        function disp() {
+            allUsers = JSON.parse(localStorage.getItem("pp"))
+            var i = 0;
+            ki = "<table border=1 align=center>"
+                    ki += "<thead>"
+                        ki += "<th>" + "S/N" + "</th>"
+                        ki += "<th>" + "first Name" + "</th>"
+                        ki += "<th>" + "Last Name" + "</th>"
+                        ki += "<th>" + "E-mail Account" + "</th>"
+                        ki += "<th>" + "Contact" + "</th>"
+                    ki += "</thead>"
+                   
+                    while (i < allUsers.length) {
+                        i++
+                        ki += "<tr>"
+                            ki += "<td>" + (i+1) + "</td>" + "<td>" + allUsers[i].firstName + "</td>" + "<td>" + allUsers[i].lastName + "<br>" + "</td>" + "<td>" + allUsers[i].email + "</td>" + "<td>" + allUsers[i].Contact + "</td>"
+                        ki += "</tr>"
+                }
+            ki += "</table>"
+            result.innerHTML = ki
+        }
+        function pre() {
+            allUsers = JSON.parse(localStorage.getItem("pp"));
+            ind--;
+            if (ind < 1) {
+                ind = 0
+            }
+            ki = "<table border=1 align=center>"
+                ki += "<thead>"
+                        ki += "<th>" + "S/N" + "</th>"
+                        ki += "<th>" + "first Name" + "</th>"
+                        ki += "<th>" + "Last Name" + "</th>"
+                        ki += "<th>" + "E-mail Account" + "</th>"
+                        ki += "<th>" + "Contact" + "</th>"
+                ki += "</thead>"
+                ki += "<tr>"
+                    ki += "<td>" + (ind+1) + "</td>"
+                    ki += "<td>" + allUsers[ind].firstName + "</td>"
+                    ki += "<td>" + allUsers[ind].lastName + "<br>" + "</td>"
+                    ki += "<td>" + allUsers[ind].email + "</td>"
+                    ki += "<td>" + allUsers[ind].Contact + "<br>" + "</td>"
+                ki += "</tr>"
+            ki += "</table>"
+            result.innerHTML = ki
+        }
+        function nex() {
+            allUsers = JSON.parse(localStorage.getItem("pp"));
+            total = (allUsers.length)-1
+            ind++;
+            if (ind >= total) {
+                ind=total
+            }
+            ki = "<table border=1 align=center>"
+                ki += "<thead>"
+                        ki += "<th>" + "S/N" + "</th>"
+                        ki += "<th>" + "first Name" + "</th>"
+                        ki += "<th>" + "Last Name" + "</th>"
+                        ki += "<th>" + "E-mail Account" + "</th>"
+                        ki += "<th>" + "Contact" + "</th>"
+                ki += "</thead>"
+                ki += "<tr>"
+                    ki += "<td>" + (ind+1) + "</td>"
+                    ki += "<td>" + allUsers[ind].firstName + "</td>"
+                    ki += "<td>" + allUsers[ind].lastName + "<br>" + "</td>"
+                    ki += "<td>" + allUsers[ind].email + "</td>"
+                    ki += "<td>" + allUsers[ind].Contact + "<br>" + "</td>"
+                ki += "</tr>"
+            ki += "</table>"
+            result.innerHTML = ki;
+
+        }
+    </script>
+</body>
+</html>

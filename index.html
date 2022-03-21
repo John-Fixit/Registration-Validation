@@ -5,11 +5,28 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Registration page</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
-    <table border="1" align="center">
+<!-- <body>
+    <div class="container-fluid">
+        <h1 class="card-header text-center">Job Applicants</h1>
+        <div class="row">
+            <label for="">First Name</label>
+            <div class="form-floating">
+                <input type="text" name="firstName" id="fN" placeholder="Enter your First Name here" class="form-control">
+                <label for="firstName">Enter your first Name</label>
+            </div>
+            <label for="">Last Name</label>
+            <div class="form-floating">
+                <input type="text" name="firstName" id="fN" placeholder="Enter your First Name here" class="form-control">
+                <label for="firstName">Enter your first Name</label>
+            </div>
+        </div> -->
+        
+    </div>
+    <table border="1" align="center" class="table table-bordered">
         <tr>
             <td colspan="2" align="center">Job Application list</td>
         </tr>
@@ -45,37 +62,9 @@
             <th>lastName</th>
             <th>email</th>
         </thead>
-        <!-- <tbody>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-        </tbody> -->
     </table>
     <script>
         ind = -1
-        u=0;
-        u++
         allUsers = [];
         ki = ""
         function submit() {
@@ -92,7 +81,8 @@
         }
         function disp() {
             allUsers = JSON.parse(localStorage.getItem("pp"))
-            ki = "<table border=1>"
+            i=0
+            ki = "<table border=1 table>"
                     ki += "<thead>"
                         ki += "<th>" + "S/N" + "</th>"
                         ki += "<th>" + "first Name" + "</th>"
@@ -101,13 +91,10 @@
                         ki += "<th>" + "Contact" + "</th>"
                     ki += "</thead>"
                    
-                    for (i = 0; i < allUsers.length ; i++) {
+                    while (i < allUsers.length) {
+                        i++
                         ki += "<tr>"
-                            ki += "<td>" + i + "</td>"
-                            ki += "<td>" + allUsers[i].firstName + "</td>"
-                            ki += "<td>" + allUsers[i].lastName + "<br>" + "</td>"
-                            ki += "<td>" + allUsers[i].email + "</td>"
-                            ki += "<td>" + allUsers[i].Contact + "</td>"
+                            ki += "<td>" + (i+1) + "</td>" + "<td>" + allUsers[i].firstName + "</td>" + "<td>" + allUsers[i].lastName + "<br>" + "</td>" + "<td>" + allUsers[i].email + "</td>" + "<td>" + allUsers[i].Contact + "</td>"
                         ki += "</tr>"
                 }
             ki += "</table>"
@@ -140,7 +127,6 @@
         function nex() {
             allUsers = JSON.parse(localStorage.getItem("pp"));
             total = (allUsers.length)-1
-            // alert(total)
             ind++;
             if (ind >= total) {
                 ind=total
